@@ -1,6 +1,5 @@
 data/*.db
 data/*.db-shm
 data/*.db-wal
-data/_dl
-*.pem
 tmp
+node_modules

@@ -1,0 +1,17 @@
+#! /usr/bin/env sh
+#
+# Create a new go.mod file for a new project
+# Find and replace gopi in all files with the name of the new project
+# Install all dependencies
+
+PROJECT_NAME=$1
+
+if [ -z "$PROJECT_NAME" ]; then
+	echo "Please provide a project name"
+	exit 1
+fi
+
+rm go.*
+go mod init "$PROJECT_NAME"
+find . -type f -exec sed -i '' -e "s/gopi/$PROJECT_NAME/g" {} \;
+go mod tidy

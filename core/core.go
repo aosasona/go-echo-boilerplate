@@ -1,9 +1,10 @@
 package core
 
 import (
-	"github.com/labstack/echo/v4"
 	"gopi/internal/config"
 	"gopi/internal/logger"
+
+	"github.com/labstack/echo/v4"
 
 	"github.com/uptrace/bun"
 	bolt "go.etcd.io/bbolt"

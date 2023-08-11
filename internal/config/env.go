@@ -51,7 +51,7 @@ func (c *Config) LoadDefaults() *Config {
 
 	if c.AppEnv == "" ||
 		(c.AppEnv != PRODUCTION && c.AppEnv != DEVELOPMENT && c.AppEnv != STAGING) {
-		log.Warn("Invalid app_errors environment detected, defaulting to `development`")
+		log.Warn("Invalid app environment detected, defaulting to `development`")
 		c.AppEnv = DEVELOPMENT
 	}
 

@@ -14,7 +14,7 @@ var Migrations = migrate.NewMigrations()
 
 func init() {
 	fmt.Println("Running migrations...")
-	if err := Migrations.DiscoverCaller(); err != nil {
+	if err := Migrations.Discover(sqlMigrations); err != nil {
 		panic(err)
 	}
 	fmt.Println("Migrations ran successfully")

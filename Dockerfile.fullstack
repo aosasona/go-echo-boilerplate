@@ -1,0 +1,33 @@
+# ==> frontend build
+FROM node:18-alpine as frontend
+
+WORKDIR /app
+
+COPY ./ui/package.json ./ui/yarn.lock ./
+RUN yarn install
+
+COPY ./ui/ .
+RUN yarn build
+
+
+# ==> backend build
+FROM golang:1.20.1 as backend
+
+WORKDIR /app
+
+COPY go.* ./
+RUN go mod download
+
+COPY . .
+COPY --from=frontend /app/dist ./ui/dist
+
+RUN make build TARGET_DIR=release-bin
+
+
+# ==> final image
+FROM alpine:latest
+
+WORKDIR /app
+COPY --from=backend /app/release-bin ./release-bin
+
+CMD ["/app/release-bin"]
